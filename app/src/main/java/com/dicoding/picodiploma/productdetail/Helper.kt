@@ -16,4 +16,27 @@ object Helper {
         val date = format.parse(this) as Date
         return DateFormat.getDateInstance(DateFormat.FULL).format(date)
     }
+
+    fun String.withCurrencyFormat(): String {
+        val rupiahExchangeRate = 16294.05
+        val euroExchangeRate = 0.88
+
+        var priceOnDollar = this.toDouble() / rupiahExchangeRate
+
+        var mCurrencyFormat = NumberFormat.getCurrencyInstance()
+        val deviceLocale = Locale.getDefault().country
+        when {
+            deviceLocale.equals("ES") -> {
+                priceOnDollar *= euroExchangeRate
+            }
+            deviceLocale.equals("ID") -> {
+                priceOnDollar *= rupiahExchangeRate
+            }
+            else -> {
+                mCurrencyFormat = NumberFormat.getCurrencyInstance(Locale.US)
+            }
+        }
+
+        return mCurrencyFormat.format(priceOnDollar)
+    }
 }
