@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.WindowInsets
 import android.view.WindowManager
+import com.dicoding.picodiploma.productdetail.Helper.withDateFormat
 import com.dicoding.picodiploma.productdetail.Helper.withNumberingFormat
 import com.dicoding.picodiploma.productdetail.databinding.ActivityMainBinding
 
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity() {
                 sizeTextView.text = size
                 descTextView.text = desc
                 priceTextView.text = price
-                dateTextView.text = getString(R.string.dateFormat, date)
+                dateTextView.text = getString(R.string.dateFormat, date.withDateFormat())
                 ratingTextView.text = getString(
                     R.string.ratingFormat,
                     rating.withNumberingFormat(),
